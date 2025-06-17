@@ -24,15 +24,21 @@ public class inventario {
     @Column(name= "ID_INVENTARIO")
     private long ID_INVENTARIO;
 
-
     @Column(name= "STOCK_MINIMO",nullable= true , precision= 5)
     private int STOCK_MINIMO;
+
+    @Column(name= "CANTIDAD",nullable= false , precision= 10)
+    private int CANTIDAD;
 
     @Column(name= "STOCK_MAXIMO",nullable= true , precision = 5)
     private int  STOCK_MAXIMO;
 
     @Column(name = "ID_SUCURSAL",nullable= false , precision = 10)
     private Long ID_SUCURSAL;
+
+    @Column(name = "ID_PRODUCTO",nullable= false , precision = 10)
+    private Long ID_PRODUCTO;
+
 
 
 

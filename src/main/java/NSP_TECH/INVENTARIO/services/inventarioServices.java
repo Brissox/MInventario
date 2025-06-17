@@ -45,4 +45,9 @@ public class inventarioServices {
         return inventariorepository.findById(ID_SUCURSAL).get();
     }
 
+    public inventario GuardarInventario(inventario inventario){
+        return inventariorepository.save(inventario);
+
+    }
+
 }

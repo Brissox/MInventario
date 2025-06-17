@@ -12,14 +12,12 @@ import lombok.NoArgsConstructor;
 
 public class producto {
 
-    private Long id_producto;
     private String NOMBRE;
     private String descripcion;
     private String marca;
-    private Long CANTIDAD;
     private Long PRECIO;
     private String SKU;
     private char estado;
-    private Long ID_INVENTARIO;
+    private Long ID_PROVEEDOR;
 
 }

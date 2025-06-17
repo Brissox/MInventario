@@ -10,9 +10,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 
 public class inventarioProductoDTO {
+
     private Long ID_INVENTARIO;
+    private Long ID_PRODUCTO;
     private String NOMBRE;
-    private Long CANTIDAD;
+    private int CANTIDAD;
     private Long PRECIO;
     private String SKU;
     private char estado;
