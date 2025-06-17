@@ -25,6 +25,7 @@ public class inventarioServices {
 
     @Autowired
     private inventarioRepository inventariorepository;
+    
 
     public producto buscarInventario(long ID_INVENTARIO){
         producto inventarioP = webClient.get()
@@ -35,7 +36,6 @@ public class inventarioServices {
         return inventarioP;
 
     }
-
 
     public List<inventario> BuscarTodosInventarios(){
         return inventariorepository.findAll();
@@ -49,5 +49,4 @@ public class inventarioServices {
         return inventariorepository.save(inventario);
 
     }
-
 }

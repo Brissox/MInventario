@@ -25,6 +25,7 @@ public class InventarioController {
 
     @Autowired
     private inventarioServices inventarioservices;
+    
 
     @GetMapping
     public ResponseEntity<?> ListarInventarios(){
@@ -99,6 +100,5 @@ public ResponseEntity<?> inventarioP(@PathVariable Long ID_INVENTARIO) {
                 .body("Error interno: " + e.getMessage());
     }
 }
-
 
 }
