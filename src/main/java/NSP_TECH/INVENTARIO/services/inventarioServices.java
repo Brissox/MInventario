@@ -37,16 +37,30 @@ public class inventarioServices {
 
     }
 
+    public List<producto> listarProductos() {
+        return webClient.get()
+                        .uri("/") // ya estás en /api/v1/productos por defecto
+                        .retrieve()
+                        .bodyToFlux(producto.class)
+                        .collectList()
+                        .block();
+    }
+
     public List<inventario> BuscarTodosInventarios(){
         return inventariorepository.findAll();
     }
 
-    public inventario BuscarUnInventario(Long ID_SUCURSAL){
-        return inventariorepository.findById(ID_SUCURSAL).get();
-    }
+    public List<inventario> BuscarUnInventarioS(Long ID_SUCURSAL) {
+    return inventariorepository.buscarPorIdSucursal(ID_SUCURSAL);
+}
+
+    public inventario BuscarUnInventario(Long ID_INVENTARIO){
+        return inventariorepository.findById(ID_INVENTARIO).get();
+    
+}
 
     public inventario GuardarInventario(inventario inventario){
         return inventariorepository.save(inventario);
-
     }
 }
+
