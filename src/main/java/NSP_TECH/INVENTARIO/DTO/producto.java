@@ -1,5 +1,6 @@
 package NSP_TECH.INVENTARIO.DTO;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,13 +12,19 @@ import lombok.NoArgsConstructor;
 
 
 public class producto {
-
-    private String NOMBRE;
+    @Schema(description="aa")
+    private String nombre;
+    @Schema(description="aa")
     private String descripcion;
+    @Schema(description="aa")
     private String marca;
-    private Long PRECIO;
-    private String SKU;
+    @Schema(description="aa")
+    private Long precio;
+    @Schema(description="aa")
+    private String sku;
+    @Schema(description="aa")
     private char estado;
-    private Long ID_PROVEEDOR;
+    @Schema(description="aa")
+    private Long id_proveedor;
 
 }

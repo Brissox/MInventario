@@ -117,23 +117,23 @@ public class InventarioController {
 
         for (inventario inv : inventarios) {
             try {
-                producto prod = inventarioservices.buscarInventario(inv.getID_INVENTARIO());
+                producto prod = inventarioservices.buscarInventario(inv.getId_inventario());
                 inventarioProductoDTO dto = new inventarioProductoDTO();
-                dto.setNOMBRE(prod.getNOMBRE());
-                dto.setPRECIO(prod.getPRECIO());
-                dto.setSKU(prod.getSKU());
-                dto.setID_PRODUCTO(inv.getID_INVENTARIO());
-                dto.setCANTIDAD(inv.getCANTIDAD());
+                dto.setNombre(prod.getNombre());
+                dto.setPrecio(prod.getPrecio());
+                dto.setSku(prod.getSku());
+                dto.setId_producto(inv.getId_producto());
+                dto.setCantidad(inv.getCantidad());
                 dto.setEstado(prod.getEstado());
-                dto.setID_INVENTARIO(inv.getID_INVENTARIO());
-                dto.setSTOCK_MAXIMO(inv.getSTOCK_MAXIMO());
-                dto.setSTOCK_MINIMO(inv.getSTOCK_MINIMO());
-                dto.setID_SUCURSAL(inv.getID_SUCURSAL());
+                dto.setId_inventario(inv.getId_inventario());
+                dto.setStock_maximo(inv.getStock_maximo());
+                dto.setStock_minimo(inv.getStock_minimo());
+                dto.setId_sucursal(inv.getId_sucursal());
 
                 listaDTO.add(dto);
             } catch (Exception e) {
                 // puedes registrar el error o continuar con el siguiente
-                System.err.println("Error al obtener producto para inventario ID " + inv.getID_INVENTARIO() + ": " + e.getMessage());
+                System.err.println("Error al obtener producto para inventario ID " + inv.getId_inventario() + ": " + e.getMessage());
             }
         }
 
@@ -146,7 +146,7 @@ public class InventarioController {
 
      // ENDPOINT PARA REGISTRAR UN INVENTARIO
     @PostMapping
-    @Operation(summary = "ENDPOINT QUE REGISTRA UN INVENTARIO", description = "ENDPOINT QUE REGISTRA UN INVENTARIO",requestBody= @io.swagger.v3.oas.annotations.parameters.RequestBody(description="INVENTARIO QUE SE VA A REGISTRAR", required = true), Content = @Content(schema = @Schema(implementation = inventario.class)))
+    @Operation(summary = "ENDPOINT QUE REGISTRA UN INVENTARIO", description = "ENDPOINT QUE REGISTRA UN INVENTARIO",requestBody= @io.swagger.v3.oas.annotations.parameters.RequestBody(description="INVENTARIO QUE SE VA A REGISTRAR", required = true, content = @Content(schema = @Schema(implementation = inventario.class))))
     @ApiResponses (value = {
         @ApiResponse(responseCode = "200", description = "Se registro correctamente el inventario", content = @Content(mediaType = "application/json", schema = @Schema(implementation = inventario.class))),
         @ApiResponse(responseCode = "500", description = "Indica que no se logro registrar el inventario", content = @Content(mediaType = "application/json", schema = @Schema(type = "string", example = "No se puede registrar el inventario")))
@@ -164,7 +164,7 @@ public class InventarioController {
 
     @PutMapping("/{ID_INVENTARIO}") //SOLO PERMITE ACTUALIZAR ESCRIBIENDO TODOS LOS DATOS
 
-@Operation(summary = "ENDPOINT QUE EDITA UN INVENTARIO", description = "ENDPOINT QUE EDITA UN INVENTARIO", requestBody=@io.swagger.v3.oas.annotations.parameters.RequestBody(description="INVENTARIO QUE SE VA A REGISTRAR", required = true), Content = @Content(schema = @Schema(implementation = inventario.class)))
+@Operation(summary = "ENDPOINT QUE EDITA UN INVENTARIO", description = "ENDPOINT QUE EDITA UN INVENTARIO", requestBody=@io.swagger.v3.oas.annotations.parameters.RequestBody(description="INVENTARIO QUE SE VA A REGISTRAR", required = true, content = @Content(schema = @Schema(implementation = inventario.class))))
     @Parameters (value = {
         @Parameter (name="ID_INVENTARIO", description= "ID del inventario que se editara", in = ParameterIn.PATH, required= true)})
 
@@ -176,12 +176,12 @@ public class InventarioController {
     public ResponseEntity<?> ActualizarInventario(@PathVariable Long ID_INVENTARIO, @RequestBody inventario inventarioctualizar){
         try {
             inventario iActualizado = inventarioservices.BuscarUnInventario(ID_INVENTARIO);
-            iActualizado.setCANTIDAD(inventarioctualizar.getCANTIDAD());
-            iActualizado.setSTOCK_MAXIMO(inventarioctualizar.getSTOCK_MAXIMO());
-            iActualizado.setSTOCK_MINIMO(inventarioctualizar.getSTOCK_MINIMO());
-            iActualizado.setID_SUCURSAL(inventarioctualizar.getID_SUCURSAL());
-            iActualizado.setID_PRODUCTO(inventarioctualizar.getID_PRODUCTO());
-            iActualizado.setID_INVENTARIO(inventarioctualizar.getID_INVENTARIO());
+            iActualizado.setCantidad(inventarioctualizar.getCantidad());
+            iActualizado.setStock_maximo(inventarioctualizar.getStock_maximo());
+            iActualizado.setStock_minimo(inventarioctualizar.getStock_minimo());
+            iActualizado.setId_sucursal(inventarioctualizar.getId_sucursal());
+            iActualizado.setId_producto(inventarioctualizar.getId_producto());
+            iActualizado.setId_inventario(inventarioctualizar.getId_inventario());
             inventarioservices.GuardarInventario(iActualizado);
             return ResponseEntity.ok(assambler.toModel(iActualizado));
         } catch (Exception e) {
@@ -205,18 +205,18 @@ public class InventarioController {
 public ResponseEntity<?> inventarioP(@PathVariable Long ID_INVENTARIO) {
     try {
         inventario iBuscado = inventarioservices.BuscarUnInventario(ID_INVENTARIO);
-        producto iproducto = inventarioservices.buscarInventario(iBuscado.getID_INVENTARIO());
+        producto iproducto = inventarioservices.buscarInventario(iBuscado.getId_inventario());
         inventarioProductoDTO inventarioDTO = new inventarioProductoDTO();
-        inventarioDTO.setNOMBRE(iproducto.getNOMBRE());
-        inventarioDTO.setPRECIO(iproducto.getPRECIO());
-        inventarioDTO.setSKU(iproducto.getSKU());
-        inventarioDTO.setID_PRODUCTO(iBuscado.getID_INVENTARIO());
-        inventarioDTO.setCANTIDAD(iBuscado.getCANTIDAD());
+        inventarioDTO.setNombre(iproducto.getNombre());
+        inventarioDTO.setPrecio(iproducto.getPrecio());
+        inventarioDTO.setSku(iproducto.getSku());
+        inventarioDTO.setId_producto(iBuscado.getId_producto());
+        inventarioDTO.setCantidad(iBuscado.getCantidad());
         inventarioDTO.setEstado(iproducto.getEstado());
-        inventarioDTO.setID_INVENTARIO(iBuscado.getID_INVENTARIO());
-        inventarioDTO.setSTOCK_MAXIMO(iBuscado.getSTOCK_MAXIMO());
-        inventarioDTO.setSTOCK_MINIMO(iBuscado.getSTOCK_MINIMO());
-        inventarioDTO.setID_SUCURSAL(iBuscado.getID_SUCURSAL());
+        inventarioDTO.setId_inventario(iBuscado.getId_inventario());
+        inventarioDTO.setStock_maximo(iBuscado.getStock_maximo());
+        inventarioDTO.setStock_minimo(iBuscado.getStock_minimo());
+        inventarioDTO.setId_sucursal(iBuscado.getId_sucursal());
 
         return ResponseEntity.ok(assambler.toModel(iBuscado));
     } catch (Exception e) {

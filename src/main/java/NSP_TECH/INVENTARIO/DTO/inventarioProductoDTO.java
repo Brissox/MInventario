@@ -12,24 +12,24 @@ import lombok.NoArgsConstructor;
 
 public class inventarioProductoDTO {
     @Schema(description="aa")
-    private Long ID_INVENTARIO;
+    private Long id_inventario;
     @Schema(description="aa")
-    private Long ID_PRODUCTO;
+    private Long id_producto;
     @Schema(description="aa")
-    private String NOMBRE;
+    private String nombre;
     @Schema(description="aa")
-    private int CANTIDAD;
+    private int cantidad;
     @Schema(description="aa")
-    private Long PRECIO;
+    private Long precio;
     @Schema(description="aa")
-    private String SKU;
+    private String sku;
     @Schema(description="aa")
     private char estado;
     @Schema(description="aa")
-    private Integer STOCK_MINIMO;
+    private Integer stock_minimo;
     @Schema(description="aa")
-    private Integer STOCK_MAXIMO;
+    private Integer stock_maximo;
     @Schema(description="aa")
-    private Long ID_SUCURSAL;
+    private Long id_sucursal;
 
 }

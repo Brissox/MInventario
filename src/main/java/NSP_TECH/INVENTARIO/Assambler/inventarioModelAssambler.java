@@ -16,12 +16,12 @@ public class inventarioModelAssambler implements RepresentationModelAssembler<in
     public EntityModel<inventario> toModel(inventario i) {
         return EntityModel.of(
             i,
-            linkTo(methodOn(InventarioController.class).BuscarUnInventario(i.getID_INVENTARIO())).withRel("LINKS"),
+            linkTo(methodOn(InventarioController.class).BuscarUnInventario(i.getId_inventario())).withRel("LINKS"),
             linkTo(methodOn(InventarioController.class).ListarInventarios()).withRel("todas-los-inventario"),
-            linkTo(methodOn(InventarioController.class).ActualizarInventario(i.getID_INVENTARIO(), i)).withRel("actualiza-una-venta"),
-            linkTo(methodOn(InventarioController.class).buscarSucursal(i.getID_SUCURSAL())).withRel("Todos los inventarios segun sucursal"),
+            linkTo(methodOn(InventarioController.class).ActualizarInventario(i.getId_inventario(), i)).withRel("actualiza-una-venta"),
+            linkTo(methodOn(InventarioController.class).buscarSucursal(i.getId_sucursal())).withRel("Todos los inventarios segun sucursal"),
             linkTo(methodOn(InventarioController.class).listarInventarioProductos()).withRel("todas-los-inventario-productos"),
-            linkTo(methodOn(InventarioController.class).inventarioP(i.getID_INVENTARIO())).withRel("Inventario-Producto-DTO")
+            linkTo(methodOn(InventarioController.class).inventarioP(i.getId_inventario())).withRel("Inventario-Producto-DTO")
         );
 
 }
