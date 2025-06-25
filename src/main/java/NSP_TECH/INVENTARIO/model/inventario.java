@@ -23,27 +23,27 @@ public class inventario {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name= "ID_INVENTARIO")
-    @Schema(description="aa")
+    @Schema(description="identificador de inventario", example="11")
     private long id_inventario;
 
     @Column(name= "STOCK_MINIMO",nullable= true , precision= 5)
-    @Schema(description="aa")
+    @Schema(description="cantidad minima de productos en stock", example="10")
     private int stock_minimo;
 
     @Column(name= "CANTIDAD",nullable= false , precision= 10)
-    @Schema(description="aa")
+    @Schema(description="cantidad existente de productos en stock", example="15")
     private int cantidad;
 
     @Column(name= "STOCK_MAXIMO",nullable= true , precision =10 )
-    @Schema(description="aa")
+    @Schema(description="cantidad maxima de productos en stock", example="50")
     private int  stock_maximo;
 
     @Column(name = "ID_SUCURSAL",nullable= false , precision = 10)
-    @Schema(description="aa")
+    @Schema(description="identificacdor de sucursal", example="1")
     private Long id_sucursal;
 
     @Column(name = "ID_PRODUCTO",nullable= false , precision = 10)
-    @Schema(description="aa")
+    @Schema(description="identificador de producto", example="1")
     private Long id_producto;
 
 

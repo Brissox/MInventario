@@ -12,19 +12,19 @@ import lombok.NoArgsConstructor;
 
 
 public class producto {
-    @Schema(description="aa")
+    @Schema(description="nombre del producto",example="Monster")
     private String nombre;
     @Schema(description="aa")
     private String descripcion;
-    @Schema(description="aa")
+    @Schema(description="nombre de la empresa que fabrica el producto",example="Coca-Cola company")
     private String marca;
-    @Schema(description="aa")
+    @Schema(description="valor de venta del producto", example="1500")
     private Long precio;
-    @Schema(description="aa")
+    @Schema(description="codigo unico que identifica el producto en el inventaro", example="1112225")
     private String sku;
-    @Schema(description="aa")
+    @Schema(description="estado del producto", example="D = Disponible / N = NoDisponible")
     private char estado;
-    @Schema(description="aa")
+    @Schema(description="identificador del proveedor del producto", example="11")
     private Long id_proveedor;
 
 }

@@ -16,6 +16,7 @@ import jakarta.transaction.Transactional;
 
 
 public class inventarioServices {
+    @Autowired
     private final WebClient webClient;
 
     public inventarioServices(WebClient webClient){
