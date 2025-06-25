@@ -19,7 +19,7 @@ import NSP_TECH.INVENTARIO.model.inventario;
 import NSP_TECH.INVENTARIO.repository.inventarioRepository;
 import NSP_TECH.INVENTARIO.services.inventarioServices;
 
-public class inventarioServiceTest {
+public class inventarioServiceTest{
     
     @Mock
     private inventarioRepository inventariorepository;
@@ -31,8 +31,6 @@ public class inventarioServiceTest {
     public void setUp(){
         MockitoAnnotations.openMocks(this);
     }
-
-
     
     @Test
     public void testBuscarTodo(){
@@ -61,7 +59,6 @@ public class inventarioServiceTest {
 
     when(inventariorepository.findAll()).thenReturn(lista);
     List<inventario> resultBusqueda = inventarioservices.BuscarTodosInventarios();
-
     assertEquals(2,resultBusqueda.size());
     verify(inventariorepository, times(1)).findAll();
 
@@ -122,4 +119,5 @@ public class inventarioServiceTest {
     }
 */
 }
+
 

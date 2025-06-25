@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class producto {
     @Schema(description="nombre del producto",example="Monster")
     private String nombre;
-    @Schema(description="aa")
+    @Schema(description="Detalle de componentes y funcionalidades del producto",example="producto con estos componentes")
     private String descripcion;
     @Schema(description="nombre de la empresa que fabrica el producto",example="Coca-Cola company")
     private String marca;

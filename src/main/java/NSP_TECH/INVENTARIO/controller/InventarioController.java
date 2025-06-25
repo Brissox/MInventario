@@ -1,6 +1,5 @@
 package NSP_TECH.INVENTARIO.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import NSP_TECH.INVENTARIO.Assambler.inventarioModelAssambler;
-import NSP_TECH.INVENTARIO.DTO.inventarioProductoDTO;
-import NSP_TECH.INVENTARIO.DTO.producto;
 import NSP_TECH.INVENTARIO.model.inventario;
 import NSP_TECH.INVENTARIO.services.inventarioServices;
 import io.swagger.v3.oas.annotations.Operation;
@@ -99,50 +96,6 @@ public class InventarioController {
         }
     }
 
-// ENDPOINT PARA BUSCAR TODOS LOS DTOINVENTARIOPRODUCTOS
-
-    @GetMapping("/IP/listar")
-
-    @Operation(summary = "DTOINVENTARIOPRODUCTOS", description = "Operacion que lista todos los DTOINVENTARIOPRODUCTOS")
-    @ApiResponses (value = {
-        @ApiResponse(responseCode = "200", description = "Se listaron correctamente los inventarios", content = @Content(mediaType = "application/json", schema = @Schema(implementation = inventarioProductoDTO.class))),
-        @ApiResponse(responseCode = "404", description = "No se encontro ningun inventario", content = @Content(mediaType = "application/json", schema = @Schema(type = "string", example = "No se encuentran Datos"))),
-        @ApiResponse(responseCode = "500",description = "Error interno al obtener los inventarios con productos", content = @Content(mediaType = "application/json", schema = @Schema(type = "string", example = "Error al listar inventarios con productos")))
-    })
-
-    public ResponseEntity<?> listarInventarioProductos() {
-    try {
-        List<inventario> inventarios = inventarioservices.BuscarTodosInventarios();
-        List<inventarioProductoDTO> listaDTO = new ArrayList<>();
-
-        for (inventario inv : inventarios) {
-            try {
-                producto prod = inventarioservices.buscarInventario(inv.getId_inventario());
-                inventarioProductoDTO dto = new inventarioProductoDTO();
-                dto.setNombre(prod.getNombre());
-                dto.setPrecio(prod.getPrecio());
-                dto.setSku(prod.getSku());
-                dto.setId_producto(inv.getId_producto());
-                dto.setCantidad(inv.getCantidad());
-                dto.setEstado(prod.getEstado());
-                dto.setId_inventario(inv.getId_inventario());
-                dto.setStock_maximo(inv.getStock_maximo());
-                dto.setStock_minimo(inv.getStock_minimo());
-                dto.setId_sucursal(inv.getId_sucursal());
-
-                listaDTO.add(dto);
-            } catch (Exception e) {
-                // puedes registrar el error o continuar con el siguiente
-                System.err.println("Error al obtener producto para inventario ID " + inv.getId_inventario() + ": " + e.getMessage());
-            }
-        }
-
-        return ResponseEntity.ok(assambler.toCollectionModel(inventarios));
-    } catch (Exception e) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encuentran datos");
-    }
-}
-
 
      // ENDPOINT PARA REGISTRAR UN INVENTARIO
     @PostMapping
@@ -190,6 +143,9 @@ public class InventarioController {
     }
 
 
+    ///SE COMENTAN LOS SIGUENTES ENDPOINT DEBIDO A QUE ESTA COMENTADO WEBCLIENT//
+    /// DESCOMENTAR WEBCLIENT Y LOS ENDPOINT PARA QUE FUNCIONEN//
+/*
        // ENDPOINT PARA BUSCAR UN DTOINVENTARIOPRODUCTO
 @GetMapping("/IP/{ID_INVENTARIO}")
 
@@ -224,5 +180,51 @@ public ResponseEntity<?> inventarioP(@PathVariable Long ID_INVENTARIO) {
                 .body("Error interno: " + e.getMessage());
     }
 }
+
+
+// ENDPOINT PARA BUSCAR TODOS LOS DTOINVENTARIOPRODUCTOS
+
+    @GetMapping("/IP/listar")
+
+    @Operation(summary = "DTOINVENTARIOPRODUCTOS", description = "Operacion que lista todos los DTOINVENTARIOPRODUCTOS")
+    @ApiResponses (value = {
+        @ApiResponse(responseCode = "200", description = "Se listaron correctamente los inventarios", content = @Content(mediaType = "application/json", schema = @Schema(implementation = inventarioProductoDTO.class))),
+        @ApiResponse(responseCode = "404", description = "No se encontro ningun inventario", content = @Content(mediaType = "application/json", schema = @Schema(type = "string", example = "No se encuentran Datos"))),
+        @ApiResponse(responseCode = "500",description = "Error interno al obtener los inventarios con productos", content = @Content(mediaType = "application/json", schema = @Schema(type = "string", example = "Error al listar inventarios con productos")))
+    })
+
+    public ResponseEntity<?> listarInventarioProductos() {
+    try {
+        List<inventario> inventarios = inventarioservices.BuscarTodosInventarios();
+        List<inventarioProductoDTO> listaDTO = new ArrayList<>();
+
+        for (inventario inv : inventarios) {
+            try {
+                producto prod = inventarioservices.buscarInventario(inv.getId_inventario());
+                inventarioProductoDTO dto = new inventarioProductoDTO();
+                dto.setNombre(prod.getNombre());
+                dto.setPrecio(prod.getPrecio());
+                dto.setSku(prod.getSku());
+                dto.setId_producto(inv.getId_producto());
+                dto.setCantidad(inv.getCantidad());
+                dto.setEstado(prod.getEstado());
+                dto.setId_inventario(inv.getId_inventario());
+                dto.setStock_maximo(inv.getStock_maximo());
+                dto.setStock_minimo(inv.getStock_minimo());
+                dto.setId_sucursal(inv.getId_sucursal());
+
+                listaDTO.add(dto);
+            } catch (Exception e) {
+                // puedes registrar el error o continuar con el siguiente
+                System.err.println("Error al obtener producto para inventario ID " + inv.getId_inventario() + ": " + e.getMessage());
+            }
+        }
+
+        return ResponseEntity.ok(assambler.toCollectionModel(inventarios));
+    } catch (Exception e) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encuentran datos");
+    }
+}
+*/
 
 }
