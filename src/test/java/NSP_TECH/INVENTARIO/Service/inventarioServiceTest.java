@@ -5,11 +5,13 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.mockito.ArgumentMatchers.any;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -104,20 +106,42 @@ public class inventarioServiceTest{
 
     }
 
+    @Test
+    public void testEditarInventario(){
 
-/*
+        inventario inventarioO = new inventario();
+        inventarioO.setId_inventario(11L);
+        inventarioO.setCantidad(1);
+        inventarioO.setStock_minimo(10);
+
+        inventario inventarioE = new inventario();
+        inventarioE.setId_inventario(11L);
+        inventarioE.setCantidad(5);
+        inventarioE.setStock_minimo(100);
+
+        when(inventariorepository.save(any(inventario.class))).thenReturn(inventarioE);
+        when(inventariorepository.existsById(11L)).thenReturn(true);
+        inventario resultado = inventarioservices.GuardarInventario(inventarioE);
+
+        assertNotNull(resultado);
+        assertEquals(11L, resultado.getId_inventario());
+        assertEquals(5, resultado.getCantidad());
+        assertEquals(100, resultado.getStock_minimo());
+
+        verify(inventariorepository, times(1)).save(inventarioE);
+    }
 
     @Test
-    public void testEliminarEnvio(){
+    public void testEliminarInventario(){
         Long id = 11L;
-        doNothing().when(enviorepository).deleteById(id);
+        doNothing().when(inventariorepository).deleteById(id);
 
-        enviosservices.Eliminar***(id);
+        inventarioservices.EliminarInventario(11L);
 
-        verify(enviosrepository.times(1)).deleteById(id);
+        verify(inventariorepository, times(1)).deleteById(id);
 
     }
-*/
+
 }
 
 

@@ -35,6 +35,9 @@ public class inventarioServices {
         return inventariorepository.save(inventario);
     }
 
+    public void EliminarInventario(Long ID_INVENTARIO){
+        inventariorepository.deleteById(ID_INVENTARIO);
+    }
 
     ///SE COMENTA EL WEBCLIENT DEBIDO A QUE SIN ESTE LOS TEST SE REALIZAN, DE LO CONTRARIO DA ERROR
 /*
