@@ -1,5 +1,6 @@
 package NSP_TECH.INVENTARIO.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import NSP_TECH.INVENTARIO.Assambler.inventarioModelAssambler;
+import NSP_TECH.INVENTARIO.DTO.inventarioProductoDTO;
+import NSP_TECH.INVENTARIO.DTO.producto;
 import NSP_TECH.INVENTARIO.model.inventario;
 import NSP_TECH.INVENTARIO.services.inventarioServices;
 import io.swagger.v3.oas.annotations.Operation;
@@ -35,7 +38,6 @@ public class InventarioController {
     
     @Autowired
     private inventarioModelAssambler assambler;
-    
 
     // ENDPOINT PARA BUSCAR TODOS LOS INVENTARIOS
     @GetMapping
@@ -145,7 +147,7 @@ public class InventarioController {
 
     ///SE COMENTAN LOS SIGUENTES ENDPOINT DEBIDO A QUE ESTA COMENTADO WEBCLIENT//
     /// DESCOMENTAR WEBCLIENT Y LOS ENDPOINT PARA QUE FUNCIONEN//
-/*
+
        // ENDPOINT PARA BUSCAR UN DTOINVENTARIOPRODUCTO
 @GetMapping("/IP/{ID_INVENTARIO}")
 
@@ -158,10 +160,10 @@ public class InventarioController {
         @ApiResponse(responseCode = "200", description = "Se lista correctamente el DTOINVENTARIOPRODUCTO ", content = @Content(mediaType = "application/json", schema = @Schema(implementation = inventarioProductoDTO.class))), 
         @ApiResponse(responseCode = "404", description = "No se encontro ningun DTOINVENTARIOPRODUCTO", content = @Content(mediaType = "application/json", schema = @Schema(type = "string", example = "No se encuentran Datos")))
     })
-public ResponseEntity<?> inventarioP(@PathVariable Long ID_INVENTARIO) {
+public ResponseEntity<?> inventP(@PathVariable Long ID_INVENTARIO) {
     try {
         inventario iBuscado = inventarioservices.BuscarUnInventario(ID_INVENTARIO);
-        producto iproducto = inventarioservices.buscarInventario(iBuscado.getId_inventario());
+        producto iproducto = inventarioservices.buscarInventario(ID_INVENTARIO);
         inventarioProductoDTO inventarioDTO = new inventarioProductoDTO();
         inventarioDTO.setNombre(iproducto.getNombre());
         inventarioDTO.setPrecio(iproducto.getPrecio());
@@ -174,7 +176,7 @@ public ResponseEntity<?> inventarioP(@PathVariable Long ID_INVENTARIO) {
         inventarioDTO.setStock_minimo(iBuscado.getStock_minimo());
         inventarioDTO.setId_sucursal(iBuscado.getId_sucursal());
 
-        return ResponseEntity.ok(assambler.toModel(iBuscado));
+        return ResponseEntity.ok(inventarioDTO);
     } catch (Exception e) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body("Error interno: " + e.getMessage());
@@ -220,11 +222,11 @@ public ResponseEntity<?> inventarioP(@PathVariable Long ID_INVENTARIO) {
             }
         }
 
-        return ResponseEntity.ok(assambler.toCollectionModel(inventarios));
+        return ResponseEntity.ok(listaDTO);
     } catch (Exception e) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No se encuentran datos");
     }
 }
-*/
+
 
 }

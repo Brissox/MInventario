@@ -6,9 +6,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+
 
 public class inventarioProductoDTO {
     @Schema(description="identificador de inventario", example="11")
